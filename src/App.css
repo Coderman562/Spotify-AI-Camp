@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.App {
+  display: flex;
+  height: 100vh;
+  width: calc(100% - 4rem); /* Subtract the width of the sidebar */
+}
+
+main {
+  flex: 1;
+  margin-left: 4rem; /* Add left margin equal to the width of the sidebar */
+}
