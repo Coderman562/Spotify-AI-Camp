@@ -8,7 +8,7 @@ const SideBar = () => {
         <SideBarIcon icon={<FaFire size="28"/>} text="Home" to="/" />
         <Divider />
         <SideBarIcon icon={<BsPlus size="32"/>} text="Add" to="/about" />
-        <SideBarIcon icon={<BsFillLightningFill size="20"/>} text="Lightning" to="/lightning" />
+        <SideBarIcon icon={<BsFillLightningFill size="20"/>} text="Volunteer" to="/volunteer" />
         <SideBarIcon icon={<FaPoo size="20"/>} text="Poop" to="/poop" />
         <Divider />
         <SideBarIcon icon={<BsGearFill size="22"/>} text="Settings" to="/settings" />

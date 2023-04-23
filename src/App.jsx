@@ -4,6 +4,7 @@ import "./App.css";
 import SideBar from "./SideBar";
 import HomePage from "./HomePage";
 import AboutPage from "./AboutPage";
+import VolunteerPage from "./VolunteerPage"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <main>
           <Routes>
             <Route index element={<HomePage />} />
+            <Route path="/volunteer" element={<VolunteerPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </main>
