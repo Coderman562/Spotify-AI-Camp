@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import SideBar from "./SideBar";
 import HomePage from "./HomePage";
-import AboutPage from "./AboutPage";
+import FormPage from "./FormPage";
 import VolunteerPage from "./VolunteerPage"
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/volunteer" element={<VolunteerPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/form" element={<FormPage />} />
           </Routes>
         </main>
       </div>

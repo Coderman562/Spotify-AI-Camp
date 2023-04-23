@@ -1,48 +1,51 @@
 import React from 'react';
+import './index.css';
 
-function VolunteerPage (){
-    const TableData = [
-        {
-            firstName: 'John',
-            lastName: 'Doe',
-            phoneNumber: '555-123-4567',
-            email: 'john.doe@example.com',
-            address: '123 Main St, Anytown, USA'
-        },
-        {
-            firstName: 'Jane',
-            lastName: 'Doe',
-            phoneNumber: '555-987-6543',
-            email: 'jane.doe@example.com',
-            address: '456 Elm St, Anytown, USA'
-        }
-        // Add more data rows as needed
-        ];
+const TableData = [
+  {
+    firstName: 'John',
+    lastName: 'Doe',
+    phoneNumber: '555-123-4567',
+    email: 'john.doe@example.com',
+    address: '123 Main St, Anytown, USA'
+  },
+  {
+    firstName: 'Jane',
+    lastName: 'Doe',
+    phoneNumber: '555-987-6543',
+    email: 'jane.doe@example.com',
+    address: '456 Elm St, Anytown, USA'
+  }
+  // Add more data rows as needed
+];
 
-    return (
-    <table>
-        <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Address</th>
-        </tr>
+const Table = () => {
+  return (
+    <div className="tableContainer">
+      <table className="dataTable">
+        <thead className="tableHeader">
+          <tr>
+            <th className="tableHeading">First Name</th>
+            <th className="tableHeading">Last Name</th>
+            <th className="tableHeading">Phone Number</th>
+            <th className="tableHeading">Email</th>
+            <th className="tableHeading">Address</th>
+          </tr>
         </thead>
-        <tbody>
-        {TableData.map((row, index) => (
+        <tbody className="tableBody">
+          {TableData.map((row, index) => (
             <tr key={index}>
-            <td>{row.firstName}</td>
-            <td>{row.lastName}</td>
-            <td>{row.phoneNumber}</td>
-            <td>{row.email}</td>
-            <td>{row.address}</td>
+              <td className="tableData">{row.firstName}</td>
+              <td className="tableData">{row.lastName}</td>
+              <td className="tableData">{row.phoneNumber}</td>
+              <td className="tableData">{row.email}</td>
+              <td className="tableData">{row.address}</td>
             </tr>
-        ))}
+          ))}
         </tbody>
-    </table>
-    );
+      </table>
+    </div>
+  );
 };
 
-export default VolunteerPage;
+export default Table;
