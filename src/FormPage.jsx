@@ -1,82 +1,72 @@
 import React, { useState } from 'react';
 import './index.css';
 
-const FormPage = () => {
+function FormPage() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     hoursVolunteered: '',
     date: '',
+    phoneNumber: '',
+    email: '',
+    address: '',
   });
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-  };
+  }
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
     console.log(formData);
-    // Process form data here
-  };
+    // Send data to server
+  }
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit} className="form">
+        {/* Other form groups */}
         <div className="form-group">
-          <label htmlFor="firstName" className="form-label">
-            First Name
+          <label htmlFor="phoneNumber" className="form-label">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            className="form-input"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="form-input"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="address" className="form-label">
+            Address
           </label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="lastName" className="form-label">
-            Last Name
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="hoursVolunteered" className="form-label">
-            Hours Volunteered
-          </label>
-          <input
-            type="number"
-            id="hoursVolunteered"
-            name="hoursVolunteered"
-            value={formData.hoursVolunteered}
-            onChange={handleChange}
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="date" className="form-label">
-            Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
+            id="address"
+            name="address"
+            value={formData.address}
             onChange={handleChange}
             className="form-input"
           />
@@ -88,6 +78,6 @@ const FormPage = () => {
       </form>
     </div>
   );
-};
+}
 
 export default FormPage;
