@@ -34,68 +34,73 @@
       mx-2;
   }
 
-    /* Stylings for data table in VolunteerPage */
-    .tableContainer {
-        @apply ml-8 mt-4;
-    }
+  /* Stylings for data table in VolunteerPage */
+  .tableContainer {
+      @apply ml-8 mt-4;
+  }
 
-    .dataTable {
-        @apply w-full border-collapse rounded-lg shadow-md overflow-hidden;
-    }
+  .dataTable {
+      @apply w-full border-collapse rounded-lg shadow-md overflow-hidden;
+  }
 
-    .tableHeader {
-        @apply bg-green-600; /* Updated color to match the greenish theme */
-    }
+  .tableHeader {
+      @apply bg-green-600; /* Updated color to match the greenish theme */
+  }
 
-    .tableHeading,
-    .tableData {
-        @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider border-b;
-    }
+  .tableHeading,
+  .tableData {
+      @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider border-b;
+  }
 
-    .tableHeading {
-        @apply text-white;
-    }
+  .tableHeading {
+      @apply text-white;
+  }
 
-    .tableData {
-        @apply text-gray-700;
-    }
+  .tableData {
+      @apply text-gray-700;
+  }
 
-    .tableBody tr:nth-child(odd) {
-        @apply bg-white;
-    }
+  .tableBody tr:nth-child(odd) {
+      @apply bg-white;
+  }
 
-    .tableBody tr:nth-child(even) {
-        @apply bg-gray-50;
-    }
+  .tableBody tr:nth-child(even) {
+      @apply bg-gray-50;
+  }
 
-    .tableData:last-child,
-    .tableHeading:last-child {
-        @apply border-r-0;
-    }
-      
-    /* Styling for the FormPage */
-    .form-container {
-      @apply mx-auto my-10 max-w-md;
-    }
+  .tableData:last-child,
+  .tableHeading:last-child {
+      @apply border-r-0;
+  }
     
-    .form {
-      @apply space-y-6; /* Increased spacing between form elements */
-    }
-    
-    .form-group {
-      @apply space-y-1;
-    }
-    
-    .form-label {
-      @apply block text-sm font-medium text-gray-700;
-    }
-    
-    .form-input {
-      @apply mt-1 block w-full py-2 px-4 text-lg border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500; /* Increased padding and font size */
-    }
-    
-    .submit-btn {
-      @apply px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700;
-    }
-    
+  /* Styling for the FormPage */
+  .form-container {
+    @apply mx-auto my-10 max-w-md;
+  }
+  
+  .form {
+    @apply space-y-6; /* Increased spacing between form elements */
+  }
+  
+  .form-group {
+    @apply space-y-1;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  
+  .form-input {
+    @apply mt-1 block w-full py-2 px-4 text-lg border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500; /* Increased padding and font size */
+  }
+  
+  .submit-btn {
+    @apply px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700;
+  }
+
+  /* Styling for error message */
+  .error-message {
+    @apply text-sm text-red-600 mt-1;
+  }
+
 }

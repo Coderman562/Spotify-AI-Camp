@@ -15,6 +15,9 @@ function FormPage() {
     notes: '', // Optional field
   });
 
+  // Initialize state for phone number error message
+  const [phoneError, setPhoneError] = useState('');
+
   // Handle changes to form input values
   function handleChange(event) {
     const { name, value } = event.target;
@@ -50,7 +53,7 @@ function FormPage() {
 
   // Validate phone number input value
   function validatePhoneNumber(value) {
-    const regex = /^\d{10}$/; // Only accepts 10-digit phone numbers
+    const regex = /^\d{10}$/; // Only accepts 10-digit phone numbers without dashes
     return regex.test(value);
   }
 
@@ -104,7 +107,7 @@ function FormPage() {
           />
         </div>
 
-        {/* // Hours Volunteered input */}
+        {/* Hours Volunteered input */}
         <div className="form-group">
           <label htmlFor="hoursVolunteered" className="form-label">
             Hours Volunteered
@@ -116,6 +119,7 @@ function FormPage() {
             value={formData.hoursVolunteered}
             onChange={handleChange}
             className="form-input"
+            step="0.5"
             required
           />
         </div>
@@ -136,7 +140,6 @@ function FormPage() {
           />
         </div>
 
-
         {/* Phone Number input */}
         <div className="form-group">
           <label htmlFor="phoneNumber" className="form-label">
@@ -149,16 +152,19 @@ function FormPage() {
             value={formData.phoneNumber}
             onChange={handleChange}
             className="form-input"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" // Display format
-            title="Phone number must be in the format XXX-XXX-XXXX"
+            pattern="\d{10}" // Accepts 10-digit phone numbers without dashes
+            title="Phone number must be 10 digits"
             required={false} // Optional field
             onBlur={(e) => {
               // Validate phone number input value onBlur
               if (e.target.value && !validatePhoneNumber(e.target.value)) {
-                alert('Please enter a valid phone number');
+                setPhoneError('Please enter a valid phone number');
+              } else {
+                setPhoneError('');
               }
             }}
           />
+          {phoneError && <p className="error-message">{phoneError}</p>}
         </div>
 
         {/* Email input */}

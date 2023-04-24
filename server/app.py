@@ -38,7 +38,7 @@ def submit_form():
     user_doc_id = db.add_user(firstName, middleName, lastName, phoneNumber, email, address, None)
     db.add_hours_logged_entry(user_doc_id, hoursVolunteered, date)
     
-    print( "hello")
+    print(db.logs_db[user_doc_id])
     return jsonify({"message": "Success!"})
 
 if __name__ == "__main__":
