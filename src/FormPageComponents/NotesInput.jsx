@@ -6,7 +6,7 @@ function NotesInput({ value, onChange }) {
   return (
     <div className="form-group">
       <label htmlFor="notes" className="form-label">
-        Notes
+        Notes (optional)
       </label>
       <textarea
         id="notes"
@@ -15,7 +15,6 @@ function NotesInput({ value, onChange }) {
         onChange={onChange}
         className="form-input"
         placeholder="Notes"
-        required
       />
     </div>
   );

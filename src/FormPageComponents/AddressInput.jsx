@@ -6,7 +6,7 @@ function AddressInput({ value, onChange }) {
   return (
     <div className="form-group">
       <label htmlFor="address" className="form-label">
-        Address
+        Address (optional)
       </label>
       <input
         type="text"
@@ -16,7 +16,6 @@ function AddressInput({ value, onChange }) {
         onChange={onChange}
         className="form-input"
         placeholder="Address"
-        required
       />
     </div>
   );

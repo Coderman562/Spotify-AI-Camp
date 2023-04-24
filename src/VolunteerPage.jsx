@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
+import Table from './VolunteerPageComponents/Table.jsx';
+import TableHeader from './VolunteerPageComponents/TableHeader.jsx';
 
 const TableData = [
   {
+    user_doc_id: '1',
     firstName: 'John',
     lastName: 'Doe',
     phoneNumber: '555-123-4567',
@@ -10,6 +13,7 @@ const TableData = [
     address: '123 Main St, Anytown, USA'
   },
   {
+    user_doc_id: '2',
     firstName: 'Jane',
     lastName: 'Doe',
     phoneNumber: '555-987-6543',
@@ -19,33 +23,51 @@ const TableData = [
   // Add more data rows as needed
 ];
 
-const Table = () => {
+function VolunteerPage() {
+  const [tableData, setTableData] = useState([]);
+  const [tableConfig, setTableConfig] = useState([
+    user_doc_id= true,
+    firstName= true,
+    lastName= true,
+    phoneNumber= true,
+    email= true,
+    address= true
+  ]);
+
+  // useEffect (() => {
+  //   fetch('/api/submit-form', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(tableData)
+  //   });
+  // }, [tableData]);
+
+  const tableRows = TableData.map(item => (
+      <Table
+        user_doc_id={item.user_doc_id}
+        firstName={item.firstName}
+        lastName={item.lastName}
+        phoneNumber={item.phoneNumber}
+        email={item.email}
+        address={item.address}
+      />
+      )
+    );
+
   return (
-    <div className="tableContainer">
-      <table className="dataTable">
-        <thead className="tableHeader">
-          <tr>
-            <th className="tableHeading">First Name</th>
-            <th className="tableHeading">Last Name</th>
-            <th className="tableHeading">Phone Number</th>
-            <th className="tableHeading">Email</th>
-            <th className="tableHeading">Address</th>
-          </tr>
-        </thead>
-        <tbody className="tableBody">
-          {TableData.map((row, index) => (
-            <tr key={index}>
-              <td className="tableData">{row.firstName}</td>
-              <td className="tableData">{row.lastName}</td>
-              <td className="tableData">{row.phoneNumber}</td>
-              <td className="tableData">{row.email}</td>
-              <td className="tableData">{row.address}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  <div className="tableContainer">
+    <table className="dataTable">
+      <thead className="tableHeader">
+        <TableHeader />
+      </thead>
+      <tbody className="tableBody">
+        {tableRows}
+      </tbody>
+    </table>
+  </div>
   );
 };
 
-export default Table;
+export default VolunteerPage;
