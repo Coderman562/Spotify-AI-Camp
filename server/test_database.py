@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 class database:
     def __init__(self):
         self.users_db=[]
@@ -31,6 +33,17 @@ class database:
     
     def add_log_entry(self, user_doc_id, start_time, end_time):
         self.logs_db[user_doc_id]["l"].append({"st": start_time, "et": end_time})
+    
+    def add_hours_logged_entry(self, user_doc_id, hoursVolunteered, date):
+        # Parse the date input and create a datetime object with a time of midnight
+        end_time = datetime.strptime(date, "%Y-%m-%d").replace(hour=0, minute=0, second=0, microsecond=0)
+        
+        # Convert hours to minutes and subtract the time from the end_time to get the start_time
+        minutes_volunteered = timedelta(minutes=(hoursVolunteered * 60))
+        start_time = end_time - minutes_volunteered
+        
+        # Add the log entry to the database
+        self.add_log_entry(user_doc_id, start_time, end_time)
 
     # Get informations
     def get_user(self, user_doc_id):

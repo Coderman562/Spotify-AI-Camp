@@ -5,13 +5,14 @@ function FormPage() {
   // Initialize state for form data
   const [formData, setFormData] = useState({
     firstName: '',
+    middleName: '', // Optional field
     lastName: '',
     hoursVolunteered: '',
     date: '',
-    phoneNumber: '',
+    phoneNumber: '', // Optional field
     email: '',
-    address: '',
-    notes: '',
+    address: '', //Optional field
+    notes: '', // Optional field
   });
 
   // Handle changes to form input values
@@ -24,11 +25,28 @@ function FormPage() {
   }
 
   // Handle form submission
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
-    // Send data to server
-  }
+    
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      console.log(data);
+      
+      // Do something with the response (e.g. display a success message)
+    } catch (error) {
+      console.error(error);
+      
+      // Do something with the error (e.g. display an error message)
+    }
+  };
 
   // Validate phone number input value
   function validatePhoneNumber(value) {
@@ -52,6 +70,21 @@ function FormPage() {
             onChange={handleChange}
             className="form-input"
             required
+          />
+        </div>
+
+        {/* Middle Name input */}
+        <div className="form-group">
+          <label htmlFor="middleName" className="form-label">
+            Middle Name (optional)
+          </label>
+          <input
+            type="text"
+            id="middleName"
+            name="middleName"
+            value={formData.middleName}
+            onChange={handleChange}
+            className="form-input"
           />
         </div>
 
@@ -129,57 +162,57 @@ function FormPage() {
         </div>
 
         {/* Email input */}
-        <div className="form-group">
-          <label htmlFor="email" className="form-label">
-            Email (optional)
-          </label>
-          <input
+      <div className="form-group">
+        <label htmlFor="email" className="form-label">
+          Email (optional)
+        </label>
+        <input
         type="email"
         id="email"
         name="email"
         value={formData.email}
         onChange={handleChange}
         className="form-input"
-      />
-    </div>
+        />
+      </div>
 
-    {/* Address input */}
-    <div className="form-group">
-      <label htmlFor="address" className="form-label">
-        Address (optional)
-      </label>
-      <input
-        type="text"
-        id="address"
-        name="address"
-        value={formData.address}
-        onChange={handleChange}
-        className="form-input"
-      />
-    </div>
+      {/* Address input */}
+      <div className="form-group">
+        <label htmlFor="address" className="form-label">
+          Address (optional)
+        </label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          value={formData.address}
+          onChange={handleChange}
+          className="form-input"
+        />
+      </div>
 
 
-    {/* Notes input */}
-    <div className="form-group">
-      <label htmlFor="notes" className="form-label">
-        Notes (optional)
-      </label>
-      <textarea
-        id="notes"
-        name="notes"
-        value={formData.notes}
-        onChange={handleChange}
-        className="form-input"
-      />
-    </div>
+      {/* Notes input */}
+      <div className="form-group">
+        <label htmlFor="notes" className="form-label">
+          Notes (optional)
+        </label>
+        <textarea
+          id="notes"
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
+          className="form-input"
+        />
+      </div>
 
-    {/* Submit button */}
-    <button type="submit" className="submit-btn">
-      Submit
-    </button>
-  </form>
-</div>
-);
+      {/* Submit button */}
+      <button type="submit" className="submit-btn">
+        Submit
+      </button>
+    </form>
+  </div>
+  );
 }
 
 export default FormPage;
