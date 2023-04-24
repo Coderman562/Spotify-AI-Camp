@@ -27,7 +27,7 @@ def submit_form():
     firstName = data["firstName"]
     middleName = data.get("middleName", "")
     lastName = data["lastName"]
-    hoursVolunteered = int(data["hoursVolunteered"])
+    hoursVolunteered = float(data["hoursVolunteered"])
     date = data["date"]
     phoneNumber = data.get("phoneNumber", "")
     email = data.get("email", "")

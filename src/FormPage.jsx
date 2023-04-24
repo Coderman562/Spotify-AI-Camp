@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import './index.css';
+import FirstNameInput from './FormPageComponents/FirstNameInput';
+import MiddleNameInput from './FormPageComponents/MiddleNameInput';
+import LastNameInput from './FormPageComponents/LastNameInput';
+import HoursVolunteeredInput from './FormPageComponents/HoursVolunteeredInput';
+import DateInput from './FormPageComponents/DateInput';
+import PhoneNumberInput from './FormPageComponents/PhoneNumberInput';
+import EmailInput from './FormPageComponents/EmailInput';
+import AddressInput from './FormPageComponents/AddressInput';
+import NotesInput from './FormPageComponents/NotesInput';
 
 function FormPage() {
   // Initialize state for form data
   const [formData, setFormData] = useState({
     firstName: '',
-    middleName: '', // Optional field
+    middleName: '',
     lastName: '',
     hoursVolunteered: '',
     date: '',
-    phoneNumber: '', // Optional field
+    phoneNumber: '',
     email: '',
-    address: '', //Optional field
-    notes: '', // Optional field
+    address: '',
+    notes: '',
   });
-
-  // Initialize state for phone number error message
-  const [phoneError, setPhoneError] = useState('');
 
   // Handle changes to form input values
   function handleChange(event) {
@@ -30,7 +36,7 @@ function FormPage() {
   // Handle form submission
   async function handleSubmit(event) {
     event.preventDefault();
-    
+
     try {
       const response = await fetch('/api/submit-form', {
         method: 'POST',
@@ -39,185 +45,64 @@ function FormPage() {
         },
         body: JSON.stringify(formData)
       });
-      
+
       const data = await response.json();
       console.log(data);
-      
+
       // Do something with the response (e.g. display a success message)
     } catch (error) {
       console.error(error);
-      
+
       // Do something with the error (e.g. display an error message)
     }
   };
 
-  // Validate phone number input value
-  function validatePhoneNumber(value) {
-    const regex = /^\d{10}$/; // Only accepts 10-digit phone numbers without dashes
-    return regex.test(value);
-  }
-
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit} className="form">
-              {/* // First Name input */}
-        <div className="form-group">
-          <label htmlFor="firstName" className="form-label">
-            First Name
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="form-input"
-            required
-          />
-        </div>
-
-        {/* Middle Name input */}
-        <div className="form-group">
-          <label htmlFor="middleName" className="form-label">
-            Middle Name (optional)
-          </label>
-          <input
-            type="text"
-            id="middleName"
-            name="middleName"
-            value={formData.middleName}
-            onChange={handleChange}
-            className="form-input"
-          />
-        </div>
-
-        {/* // Last Name input */}
-        <div className="form-group">
-          <label htmlFor="lastName" className="form-label">
-            Last Name
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="form-input"
-            required
-          />
-        </div>
-
-        {/* Hours Volunteered input */}
-        <div className="form-group">
-          <label htmlFor="hoursVolunteered" className="form-label">
-            Hours Volunteered
-          </label>
-          <input
-            type="number"
-            id="hoursVolunteered"
-            name="hoursVolunteered"
-            value={formData.hoursVolunteered}
-            onChange={handleChange}
-            className="form-input"
-            step="0.5"
-            required
-          />
-        </div>
-
-        {/* // Date input */}
-        <div className="form-group">
-          <label htmlFor="date" className="form-label">
-            Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            className="form-input"
-            required
-          />
-        </div>
-
-        {/* Phone Number input */}
-        <div className="form-group">
-          <label htmlFor="phoneNumber" className="form-label">
-            Phone Number (optional)
-          </label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            className="form-input"
-            pattern="\d{10}" // Accepts 10-digit phone numbers without dashes
-            title="Phone number must be 10 digits"
-            required={false} // Optional field
-            onBlur={(e) => {
-              // Validate phone number input value onBlur
-              if (e.target.value && !validatePhoneNumber(e.target.value)) {
-                setPhoneError('Please enter a valid phone number');
-              } else {
-                setPhoneError('');
-              }
-            }}
-          />
-          {phoneError && <p className="error-message">{phoneError}</p>}
-        </div>
-
-        {/* Email input */}
-      <div className="form-group">
-        <label htmlFor="email" className="form-label">
-          Email (optional)
-        </label>
-        <input
-        type="email"
-        id="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        className="form-input"
+        <FirstNameInput
+          value={formData.firstName}
+          onChange={handleChange}
         />
-      </div>
-
-      {/* Address input */}
-      <div className="form-group">
-        <label htmlFor="address" className="form-label">
-          Address (optional)
-        </label>
-        <input
-          type="text"
-          id="address"
-          name="address"
+        <MiddleNameInput
+          value={formData.middleName}
+          onChange={handleChange}
+        />
+        <LastNameInput
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <HoursVolunteeredInput
+          value={formData.hoursVolunteered}
+          onChange={handleChange}
+        />
+        <DateInput
+          value={formData.date}
+          onChange={handleChange}
+        />
+        <PhoneNumberInput
+          value={formData.phoneNumber}
+          onChange={handleChange}
+        />
+        <EmailInput
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <AddressInput
           value={formData.address}
           onChange={handleChange}
-          className="form-input"
         />
-      </div>
-
-
-      {/* Notes input */}
-      <div className="form-group">
-        <label htmlFor="notes" className="form-label">
-          Notes (optional)
-        </label>
-        <textarea
-          id="notes"
-          name="notes"
+        <NotesInput
           value={formData.notes}
           onChange={handleChange}
-          className="form-input"
         />
-      </div>
 
-      {/* Submit button */}
-      <button type="submit" className="submit-btn">
-        Submit
-      </button>
-    </form>
-  </div>
+        {/* Submit button */}
+        <button type="submit" className="submit-btn">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 
