@@ -1,0 +1,16 @@
+{
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "compilerOptions": {
+      "lib": ["ES2020"],
+      "module": "CommonJS",
+      "target": "ES2020",
+      "strict": true,
+      "sourceMap": true,
+      "outDir": "./build",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src", "tests"]
+  }
+  

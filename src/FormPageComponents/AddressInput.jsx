@@ -1,23 +1,25 @@
+// AddressInput.jsx
 import React from 'react';
 import "../index.css";
 
-function LastNameInput({ value, onChange }) {
+function AddressInput({ value, onChange }) {
   return (
     <div className="form-group">
-      <label htmlFor="lastName" className="form-label">
-        Last Name
+      <label htmlFor="address" className="form-label">
+        Address
       </label>
       <input
         type="text"
-        id="lastName"
-        name="lastName"
+        id="address"
+        name="address"
         value={value}
         onChange={onChange}
         className="form-input"
+        placeholder="Address"
         required
       />
     </div>
   );
 }
 
-export default LastNameInput;
+export default AddressInput;
