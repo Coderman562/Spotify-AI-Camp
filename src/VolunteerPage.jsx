@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './index.css';
 import TableContents from './VolunteerPageComponents/TableContents.jsx';
 import TableHeader from './VolunteerPageComponents/TableHeader.jsx';
+import ProfileEditorPopup from './VolunteerPageComponents/ProfileEditorPopup.jsx';
 
-const TableData = [
+const tableDataEx = [
   {
     user_doc_id: '1',
     firstName: 'John',
@@ -24,7 +25,10 @@ const TableData = [
 ];
 
 function VolunteerPage() {
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState(tableDataEx);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+
   // const [tableConfig, setTableConfig] = useState([
   //   user_doc_id= true,
   //   firstName= true,
@@ -44,38 +48,34 @@ function VolunteerPage() {
   //   });
   // }, [tableData]);
 
-  const tableRows = tableData.map(item => (
-      <TableContents
-        user_doc_id={item.user_doc_id}
-        firstName={item.firstName}
-        lastName={item.lastName}
-        phoneNumber={item.phoneNumber}
-        email={item.email}
-        address={item.address}
-      />
-      )
-    );
+  const tableRows = tableData.map((item) => (
+    <TableContents
+      key={item.user_doc_id}
+      rowData={item}
+      onButtonClick={() => {
+        setSelectedRow(item);
+        setShowPopup(true);
+      }}
+    />
+  ));
 
-  function onProfileEditorChange(event) {
-    const { name, value } = event.target;
-    setTableData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  }
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
-  <div className="tableContainer">
-    <table className="dataTable">
-      <thead className="tableHeader">
-        <TableHeader />
-      </thead>
-      <tbody className="tableBody">
-        {tableRows}
-      </tbody>
-    </table>
-  </div>
+    <div className="tableContainer">
+      <table className="dataTable">
+        <thead className="tableHeader">
+          <TableHeader />
+        </thead>
+        <tbody className="tableBody">{tableRows}</tbody>
+      </table>
+      {showPopup && selectedRow && (
+        <ProfileEditorPopup rowData={selectedRow} onClose={closePopup} />
+      )}
+    </div>
   );
-};
+}
 
 export default VolunteerPage;
