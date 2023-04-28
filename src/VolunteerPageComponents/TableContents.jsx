@@ -1,8 +1,8 @@
 import React from 'react';
 import '../index.css';
-import profileEditorPopup from './profileEditorPopup.jsx';
+import ProfileEditorPopup from './ProfileEditorPopup.jsx';
 
-function Table(props) {
+function TableContents(props) {
     return (
         <div>
         // Add configuration in this file, in relation to the TableHeader to tell program what heading to show based on their configuration - sent in from props. Use state to manage this
@@ -18,9 +18,9 @@ function Table(props) {
             <button>View Full Profile</button>
         </tr>
         {/* input props items from Table here */}
-        <profileEditorPopup />
+        <ProfileEditorPopup />
         </div>
     );
 }
 
-export default Table;
+export default TableContents;

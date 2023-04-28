@@ -2,7 +2,7 @@
 import React from 'react';
 import '../index.css';
 
-function TableHeader(props) {
+function TableHeader() {
     return (
         // Add configuration in this file to tell program what heading to show based on their configuration - sent in from props. Use state to manage this
         <tr>

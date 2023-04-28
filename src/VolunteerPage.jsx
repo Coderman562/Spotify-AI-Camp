@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import Table from './VolunteerPageComponents/Table.jsx';
+import TableContents from './VolunteerPageComponents/TableContents.jsx';
 import TableHeader from './VolunteerPageComponents/TableHeader.jsx';
 
 const TableData = [
@@ -25,14 +25,14 @@ const TableData = [
 
 function VolunteerPage() {
   const [tableData, setTableData] = useState([]);
-  const [tableConfig, setTableConfig] = useState([
-    user_doc_id= true,
-    firstName= true,
-    lastName= true,
-    phoneNumber= true,
-    email= true,
-    address= true
-  ]);
+  // const [tableConfig, setTableConfig] = useState([
+  //   user_doc_id= true,
+  //   firstName= true,
+  //   lastName= true,
+  //   phoneNumber= true,
+  //   email= true,
+  //   address= true
+  // ]);
 
   // useEffect (() => {
   //   fetch('/api/submit-form', {
@@ -44,8 +44,8 @@ function VolunteerPage() {
   //   });
   // }, [tableData]);
 
-  const tableRows = TableData.map(item => (
-      <Table
+  const tableRows = tableData.map(item => (
+      <TableContents
         user_doc_id={item.user_doc_id}
         firstName={item.firstName}
         lastName={item.lastName}
@@ -55,6 +55,14 @@ function VolunteerPage() {
       />
       )
     );
+
+  function onProfileEditorChange(event) {
+    const { name, value } = event.target;
+    setTableData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  }
 
   return (
   <div className="tableContainer">

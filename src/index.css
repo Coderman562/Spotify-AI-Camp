@@ -100,4 +100,31 @@
   .error-message {
     @apply text-sm text-red-600 mt-1;
   }
+
+  /* Styling for the PopupProfileEditor */
+  .popup-container {
+    @apply fixed inset-0 flex items-center justify-center z-50;
+    @apply bg-black bg-opacity-50;
+  }
+  
+  .popup-content {
+    @apply bg-white p-6 rounded-lg shadow-lg w-96;
+  }
+  
+  .popup-header {
+    @apply mb-4;
+  }
+  
+  .popup-title {
+    @apply text-2xl font-semibold;
+  }
+  
+  .user-info {
+    @apply mb-2;
+  }
+  
+  .user-info strong {
+    @apply mr-2;
+  }
+  
 }
