@@ -11,6 +11,7 @@ import requests
 # client = MongoClient("mongodb://localhost:27017/")
 # db = client["mydatabase"]
 db = get_database()
+use_py_monogo_engine = True
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 #app = Flask(__name__, static_folder="../src", template_folder="templates")
@@ -23,7 +24,9 @@ def send_static(path):
 
 @app.route("/")
 def index():
-    return send_from_directory(app.static_folder, "index.html")
+    response = send_from_directory(app.static_folder, "index.html")
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @app.route("/submit-form", methods=["POST"])
 def submit_form():
@@ -46,12 +49,28 @@ def submit_form():
     return jsonify({"message": "Success!"})
 
 @app.route('/get-table-data', methods=["GET"])
+@app.route('/api/get-table-data', methods=["GET"])
 def get_table_data():
-    users = []
-    with DB() as db:
-        users = db.get_users({})
+    if ( use_py_monogo_engine ):
+        # Get the data from the database
+        users = []
+        with DB() as db:
+            users = db.get_users({})
 
-    return jsonify(users)
+        return jsonify(users)
+    else:
+        try:
+            response = requests.get('https://cuf0l744pj.execute-api.us-east-1.amazonaws.com/default/get_users')
+            if response.status_code == 200:
+                # Create a new response with the Access-Control-Allow-Origin header
+                flask_response = jsonify(response.json())
+                flask_response.headers.add("Access-Control-Allow-Origin", "*")
+                return flask_response
+            else:
+                return Response('Error fetching data from the API', status=500)
+        except Exception as e:
+            print(e)
+            return Response('Error fetching data from the API', status=500)        
 
 
 if __name__ == "__main__":
