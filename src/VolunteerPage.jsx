@@ -25,9 +25,28 @@ const tableDataEx = [
 ];
 
 function VolunteerPage() {
-  const [tableData, setTableData] = useState(tableDataEx);
+  const [tableData, setTableData] = useState();
   const [selectedRow, setSelectedRow] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const fetchTableData = async () => {
+      try {
+        console.log("starting fetch")
+        const response = await fetch('/api/get-table-data');
+        const data = await response.json();
+        setTableData(data);
+        console.log("fetched data")
+        
+      } catch (error) {
+        console.error('Error fetching table data:', error);
+      }
+    };
+
+    fetchTableData();
+  }, []);
+
+  console.log(tableData)
 
   // const [tableConfig, setTableConfig] = useState([
   //   user_doc_id= true,
@@ -48,16 +67,18 @@ function VolunteerPage() {
   //   });
   // }, [tableData]);
 
-  const tableRows = tableData.map((item) => (
-    <TableContents
-      key={item.user_doc_id}
-      rowData={item}
-      onButtonClick={() => {
-        setSelectedRow(item);
-        setShowPopup(true);
-      }}
-    />
-  ));
+  const tableRows = tableData
+    ? tableData.map((item) => (
+        <TableContents
+          key={item.uid}
+          rowData={item}
+          onButtonClick={() => {
+            setSelectedRow(item);
+            setShowPopup(true);
+          }}
+        />
+      ))
+    : null;
 
   const closePopup = () => {
     setShowPopup(false);
