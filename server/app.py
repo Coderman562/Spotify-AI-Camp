@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, Response
 from flask_cors import CORS
 from pymongo import MongoClient
 from test_database import get_database
+from mongodb_engine import DB
 import os
+import requests
+
+# Note: Always use /api in react fetches before each route
 
 # client = MongoClient("mongodb://localhost:27017/")
 # db = client["mydatabase"]
@@ -40,6 +44,15 @@ def submit_form():
     
     print(db.logs_db[user_doc_id])
     return jsonify({"message": "Success!"})
+
+@app.route('/get-table-data', methods=["GET"])
+def get_table_data():
+    users = []
+    with DB() as db:
+        users = db.get_users({})
+
+    return jsonify(users)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=6173)
