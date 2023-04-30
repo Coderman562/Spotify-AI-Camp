@@ -1,14 +1,24 @@
 import React from 'react';
 import '../index.css';
 
-function TableContents({ rowData, onButtonClick }) {
+function TableContents({ rowData, onButtonClick, tableConfig }) {
   return (
     <tr>
-      <td className="tableData">{rowData.fn ? rowData.fn : '-'}</td>
-      <td className="tableData">{rowData.ln ? rowData.ln : '-'}</td>
-      <td className="tableData">{rowData.phn ? rowData.phn : '-'}</td>
-      <td className="tableData">{rowData.eml ? rowData.eml : '-'}</td>
-      <td className="tableData">{rowData.addr ? rowData.addr : '-'}</td>
+      {tableConfig.showFirstName && (
+        <td className="tableData">{rowData.fn ? rowData.fn : '-'}</td>
+      )}
+      {tableConfig.showLastName && (
+        <td className="tableData">{rowData.ln ? rowData.ln : '-'}</td>
+      )}
+      {tableConfig.showPhoneNumber && (
+        <td className="tableData">{rowData.phn ? rowData.phn : '-'}</td>
+      )}
+      {tableConfig.showEmail && (
+        <td className="tableData">{rowData.eml ? rowData.eml : '-'}</td>
+      )}
+      {tableConfig.showAddress && (
+        <td className="tableData">{rowData.addr ? rowData.addr : '-'}</td>
+      )}
       <td className="tableData">
         <button onClick={onButtonClick}>View Full Profile</button>
       </td>

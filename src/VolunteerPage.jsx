@@ -3,6 +3,7 @@ import './index.css';
 import TableContents from './VolunteerPageComponents/TableContents.jsx';
 import TableHeader from './VolunteerPageComponents/TableHeader.jsx';
 import ProfileEditorPopup from './VolunteerPageComponents/ProfileEditorPopup.jsx';
+import ShowTableItems from './VolunteerPageComponents/ShowTableItems.jsx';
 
 const tableDataEx = [
   {
@@ -28,6 +29,15 @@ function VolunteerPage() {
   const [tableData, setTableData] = useState();
   const [selectedRow, setSelectedRow] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [tableConfig, setTableConfig] = useState({
+    // showUser_doc_id: true,
+    showFirstName: true,
+    showLastName: true,
+    showPhoneNumber: true,
+    showEmail: true,
+    showAddress: true
+  });
+  
 
   useEffect(() => {
     const fetchTableData = async () => {
@@ -48,30 +58,12 @@ function VolunteerPage() {
 
   console.log(tableData)
 
-  // const [tableConfig, setTableConfig] = useState([
-  //   user_doc_id= true,
-  //   firstName= true,
-  //   lastName= true,
-  //   phoneNumber= true,
-  //   email= true,
-  //   address= true
-  // ]);
-
-  // useEffect (() => {
-  //   fetch('/api/submit-form', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(tableData)
-  //   });
-  // }, [tableData]);
-
   const tableRows = tableData
     ? tableData.map((item) => (
         <TableContents
           key={item.uid}
           rowData={item}
+          tableConfig={tableConfig}
           onButtonClick={() => {
             setSelectedRow(item);
             setShowPopup(true);
@@ -86,9 +78,13 @@ function VolunteerPage() {
 
   return (
     <div className="tableContainer">
+      <ShowTableItems
+        tableConfig={tableConfig}
+        setTableConfig={setTableConfig}
+      />
       <table className="dataTable">
         <thead className="tableHeader">
-          <TableHeader />
+          <TableHeader tableConfig={tableConfig} />
         </thead>
         <tbody className="tableBody">{tableRows}</tbody>
       </table>
