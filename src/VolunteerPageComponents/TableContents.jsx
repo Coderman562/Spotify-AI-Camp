@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './TableContents.css';
 
-function TableContents({ rowData, onButtonClick, tableConfig, editMode, toggleEditMode }) {
+function TableContents({rowData, tableConfig, onButtonClick, editMode, toggleEditMode, editAllMode}) {
 
   const isEditMode = editMode[rowData.uid] || false;
 
   const renderDataOrInput = (key, configKey) => {
     return (
       <td className="tableData">
-        {editMode ? (
+        {isEditMode ? (
           <input
             className="tableDataInput"
             type="text"
@@ -21,6 +21,8 @@ function TableContents({ rowData, onButtonClick, tableConfig, editMode, toggleEd
       </td>
     );
   };
+
+  // console.log(editAllMode)
 
   return (
     <tr>
@@ -39,11 +41,15 @@ function TableContents({ rowData, onButtonClick, tableConfig, editMode, toggleEd
       {tableConfig.showAddress && (
         <>{renderDataOrInput('addr', 'showAddress')}</>
       )}
-      <td className="tableData">
-        <button onClick={onButtonClick}>View Full Profile</button>
-        <button onClick={() => toggleEditMode(rowData.uid)}>
-          {isEditMode ? 'Save' : 'Edit'}
-        </button>
+      <td>
+        {!editAllMode && (
+          isEditMode ? (
+            <button onClick={() => toggleEditMode(rowData.uid)}>Save</button>
+          ) : (
+            <button onClick={() => toggleEditMode(rowData.uid)}>Edit</button>
+          )
+        )}
+        <button onClick={onButtonClick}>View</button>
       </td>
     </tr>
   );

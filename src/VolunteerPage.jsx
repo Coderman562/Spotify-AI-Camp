@@ -40,6 +40,7 @@ function VolunteerPage() {
     showAddress: true
   });
   const [editMode, setEditMode] = useState({});
+  const [editAllMode, setEditAllMode] = useState(false);
 
   const closePopup = () => {
     setShowPopup(false);
@@ -51,7 +52,19 @@ function VolunteerPage() {
       [uid]: !prevEditMode[uid],
     }));
   };
-  
+
+  const toggleEditAllMode = () => {
+    const newEditMode = {};
+
+    tableData.forEach((row) => {
+      newEditMode[row.user_doc_id] = !editAllMode;
+    });
+
+    console.log('editAllMode:', editAllMode);
+
+    setEditMode(newEditMode);
+    setEditAllMode(!editAllMode);
+  };
 
   useEffect(() => {
     const fetchTableData = async () => {
@@ -103,6 +116,7 @@ function VolunteerPage() {
         }}
         editMode={editMode}
         toggleEditMode={toggleEditMode}
+        editAllMode={editAllMode}
       />
     ))
   : null;
@@ -117,9 +131,9 @@ function VolunteerPage() {
         <ToggleAllEditModes
           editMode={editMode}
           tableData={tableData}
-          toggleEditMode={toggleEditMode}
+          toggleEditAllMode={toggleEditAllMode} // Pass this function as a prop
         />
-      )} // Add this line
+      )}
       <table className="dataTable">
         <thead className="tableHeader">
           <TableHeader tableConfig={tableConfig} />
