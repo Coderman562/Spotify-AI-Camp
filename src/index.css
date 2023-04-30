@@ -3,43 +3,6 @@
 @import 'tailwindcss/utilities';
 
 @layer components {
-  /* Stylings for data table in VolunteerPage */
-  .tableContainer {
-      @apply ml-8 mt-4;
-  }
-
-  .dataTable {
-      @apply w-full border-collapse rounded-lg shadow-md overflow-hidden;
-  }
-
-  .tableHeader {
-      @apply bg-green-600;
-  }
-
-  .tableHeader th {
-      @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider border-b text-white;
-  }
-
-  .tableHeader th:first-child {
-      @apply rounded-tl-lg;
-  }
-
-  .tableHeader th:last-child {
-      @apply rounded-tr-lg;
-  }
-
-  .tableData {
-      @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider border-b text-gray-700;
-  }
-
-  .tableBody tr:nth-child(odd) {
-      @apply bg-white;
-  }
-
-  .tableBody tr:nth-child(even) {
-      @apply bg-gray-50;
-  }
-
   /* Styling for the FormPage */
   .form-container {
     @apply mx-auto my-10 max-w-md;

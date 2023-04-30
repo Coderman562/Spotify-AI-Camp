@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css';
+import './TableContents.css';
 
 function TableContents({ rowData, onButtonClick, tableConfig }) {
   return (
