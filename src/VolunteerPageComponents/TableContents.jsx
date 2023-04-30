@@ -42,6 +42,9 @@ function TableContents({rowData, tableConfig, onButtonClick, editMode, toggleEdi
         <>{renderDataOrInput('addr', 'showAddress')}</>
       )}
       <td>
+        <button onClick={onButtonClick}>View Full Profile</button>
+      </td>
+      <td>
         {!editAllMode && (
           isEditMode ? (
             <button onClick={() => toggleEditMode(rowData.uid)}>Save</button>
@@ -49,7 +52,6 @@ function TableContents({rowData, tableConfig, onButtonClick, editMode, toggleEdi
             <button onClick={() => toggleEditMode(rowData.uid)}>Edit</button>
           )
         )}
-        <button onClick={onButtonClick}>View</button>
       </td>
     </tr>
   );
