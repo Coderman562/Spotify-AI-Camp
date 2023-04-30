@@ -3,6 +3,8 @@ import './TableContents.css';
 
 function TableContents({ rowData, onButtonClick, tableConfig, editMode, toggleEditMode }) {
 
+  const isEditMode = editMode[rowData.uid] || false;
+
   const renderDataOrInput = (key, configKey) => {
     return (
       <td className="tableData">
@@ -39,8 +41,8 @@ function TableContents({ rowData, onButtonClick, tableConfig, editMode, toggleEd
       )}
       <td className="tableData">
         <button onClick={onButtonClick}>View Full Profile</button>
-        <button onClick={toggleEditMode}>
-          {editMode ? 'Save' : 'Edit'}
+        <button onClick={() => toggleEditMode(rowData.uid)}>
+          {isEditMode ? 'Save' : 'Edit'}
         </button>
       </td>
     </tr>
