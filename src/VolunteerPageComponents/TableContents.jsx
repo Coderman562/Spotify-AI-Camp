@@ -1,26 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './TableContents.css';
 
 function TableContents({ rowData, onButtonClick, tableConfig }) {
+  const [editMode, setEditMode] = useState(false);
+
+  const renderDataOrInput = (key, configKey) => {
+    return (
+      <td className="tableData">
+        {editMode ? (
+          <input
+            className="tableDataInput"
+            type="text"
+            value={rowData[key] ? rowData[key] : ''}
+            onChange={(e) => console.log('Handle input change here')}
+          />
+        ) : (
+          rowData[key] ? rowData[key] : '-'
+        )}
+      </td>
+    );
+  };
+
   return (
     <tr>
       {tableConfig.showFirstName && (
-        <td className="tableData">{rowData.fn ? rowData.fn : '-'}</td>
+        <>{renderDataOrInput('fn', 'showFirstName')}</>
       )}
       {tableConfig.showLastName && (
-        <td className="tableData">{rowData.ln ? rowData.ln : '-'}</td>
+        <>{renderDataOrInput('ln', 'showLastName')}</>
       )}
       {tableConfig.showPhoneNumber && (
-        <td className="tableData">{rowData.phn ? rowData.phn : '-'}</td>
+        <>{renderDataOrInput('phn', 'showPhoneNumber')}</>
       )}
       {tableConfig.showEmail && (
-        <td className="tableData">{rowData.eml ? rowData.eml : '-'}</td>
+        <>{renderDataOrInput('eml', 'showEmail')}</>
       )}
       {tableConfig.showAddress && (
-        <td className="tableData">{rowData.addr ? rowData.addr : '-'}</td>
+        <>{renderDataOrInput('addr', 'showAddress')}</>
       )}
       <td className="tableData">
         <button onClick={onButtonClick}>View Full Profile</button>
+        <button onClick={() => setEditMode(!editMode)}>
+          {editMode ? 'Save' : 'Edit'}
+        </button>
       </td>
     </tr>
   );

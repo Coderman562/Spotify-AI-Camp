@@ -20,13 +20,14 @@ const tableDataEx = [
     lastName: 'Doe',
     phoneNumber: '555-987-6543',
     email: 'jane.doe@example.com',
-    address: '456 Elm St, Anytown, USA'
+    address: '456 Elm St, Anytown, USA' 
   }
   // Add more data rows as needed
 ];
 
 function VolunteerPage() {
   const [tableData, setTableData] = useState();
+  const [logData, setLogData] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [tableConfig, setTableConfig] = useState({
@@ -55,6 +56,25 @@ function VolunteerPage() {
 
     fetchTableData();
   }, []);
+
+  useEffect(() => {
+    if (showPopup && selectedRow) {
+      const fetchLogData = async () => {
+        try {
+          console.log("starting fetch log");
+          const response = await fetch(`/api/get-log-stats?uid=${selectedRow.uid}`);
+          const data = await response.json();
+          setLogData(data);
+          console.log("fetched data log");
+        } catch (error) {
+          console.error("Error fetching log data:", error);
+        }
+      };
+  
+      fetchLogData();
+    }
+  }, [showPopup, selectedRow]);
+  
 
   console.log(tableData)
 
@@ -89,7 +109,7 @@ function VolunteerPage() {
         <tbody className="tableBody">{tableRows}</tbody>
       </table>
       {showPopup && selectedRow && (
-        <ProfileEditorPopup rowData={selectedRow} onClose={closePopup} />
+        <ProfileEditorPopup rowData={selectedRow} onClose={closePopup} logData={logData} />
       )}
     </div>
   );

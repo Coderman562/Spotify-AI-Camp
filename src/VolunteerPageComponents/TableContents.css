@@ -23,4 +23,13 @@
   .tableBody tr:nth-child(even) {
       @apply bg-gray-50;
   }
+
+  /* Additional stylings for TableContents component */
+  .tableDataInput {
+    @apply w-full h-full box-border border-none bg-transparent p-0 m-0;
+  }
+
+  .tableDataInput:focus {
+    @apply outline-none border-none;
+  }
 }
