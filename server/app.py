@@ -72,6 +72,25 @@ def get_table_data():
             print(e)
             return Response('Error fetching data from the API', status=500)        
 
+@app.route('/get-log-stats', methods=["GET"])
+@app.route('/api/get-log-stats', methods=["GET"])
+def get_log_stats():
+    uid = request.args.get('uid')  # Get the 'uid' from the request URL query parameters
+
+    if not uid:
+        return jsonify({"error": "uid is required"}), 400
+
+    if use_py_monogo_engine:
+        # Get the data from the database
+        log_stats = []
+        with DB() as db:
+            user_oid = db.get_user_oid(uid)
+            log_stats = db.get_user_log_entry(user_oid)
+
+        return jsonify(log_stats)
+
+    return jsonify({"error": "Not using py_mongo_engine"}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=6173)

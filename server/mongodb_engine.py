@@ -94,6 +94,21 @@ class DB:
 
         return users
 
+    def update_user(self, user_oid, user):
+        with self.client.start_session() as session:
+            with session.start_transaction():
+                try:
+                    user_to_update = {"_id": user_oid}
+                    user_info = {"$set": user}
+                    self.user_col.update_one(user_to_update, user_info, session=session)
+                    
+                    session.commit_transaction()
+                except Exception as e:
+                    session.abort_transaction()
+                    print(e)
+                    return False
+        return True
+
     def append_user_log(self, user_oid, logs):
         self._calculate_log_time_stat(logs)
         

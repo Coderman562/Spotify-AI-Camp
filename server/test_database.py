@@ -51,6 +51,9 @@ class database:
 
     def get_log_entry(self, user_doc_id, log_entry_id):
         return self.logs_db[user_doc_id]["l"][log_entry_id]
+    
+    def get_user_log_entry(self, user_doc_id):
+        return self.logs_db[user_doc_id]["l"]
 
 data = database()
 
