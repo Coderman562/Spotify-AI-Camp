@@ -4,6 +4,7 @@ import TableContents from './VolunteerPageComponents/TableContents.jsx';
 import TableHeader from './VolunteerPageComponents/TableHeader.jsx';
 import ProfileEditorPopup from './VolunteerPageComponents/ProfileEditorPopup.jsx';
 import ShowTableItems from './VolunteerPageComponents/ShowTableItems.jsx';
+import ToggleAllEditModes from './VolunteerPageComponents/ToggleAllEditModes.jsx';
 
 const tableDataEx = [
   {
@@ -26,7 +27,7 @@ const tableDataEx = [
 ];
 
 function VolunteerPage() {
-  const [tableData, setTableData] = useState();
+  const [tableData, setTableData] = useState([]);
   const [logData, setLogData] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null); 
   const [showPopup, setShowPopup] = useState(false);
@@ -38,15 +39,19 @@ function VolunteerPage() {
     showEmail: true,
     showAddress: true
   });
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState({});
 
   const closePopup = () => {
     setShowPopup(false);
   };
 
-  const toggleEditMode = () => {
-    setEditMode(!editMode);
+  const toggleEditMode = (uid) => {
+    setEditMode((prevEditMode) => ({
+      ...prevEditMode,
+      [uid]: !prevEditMode[uid],
+    }));
   };
+  
 
   useEffect(() => {
     const fetchTableData = async () => {
@@ -108,6 +113,13 @@ function VolunteerPage() {
         tableConfig={tableConfig}
         setTableConfig={setTableConfig}
       />
+      {tableData.length > 0 && (
+        <ToggleAllEditModes
+          editMode={editMode}
+          tableData={tableData}
+          toggleEditMode={toggleEditMode}
+        />
+      )} // Add this line
       <table className="dataTable">
         <thead className="tableHeader">
           <TableHeader tableConfig={tableConfig} />
