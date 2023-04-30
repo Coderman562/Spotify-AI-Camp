@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './TableContents.css';
 
-function TableContents({ rowData, onButtonClick, tableConfig }) {
-  const [editMode, setEditMode] = useState(false);
+function TableContents({ rowData, onButtonClick, tableConfig, editMode, toggleEditMode }) {
 
   const renderDataOrInput = (key, configKey) => {
     return (
@@ -40,7 +39,7 @@ function TableContents({ rowData, onButtonClick, tableConfig }) {
       )}
       <td className="tableData">
         <button onClick={onButtonClick}>View Full Profile</button>
-        <button onClick={() => setEditMode(!editMode)}>
+        <button onClick={toggleEditMode}>
           {editMode ? 'Save' : 'Edit'}
         </button>
       </td>

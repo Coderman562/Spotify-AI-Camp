@@ -28,7 +28,7 @@ const tableDataEx = [
 function VolunteerPage() {
   const [tableData, setTableData] = useState();
   const [logData, setLogData] = useState([]);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null); 
   const [showPopup, setShowPopup] = useState(false);
   const [tableConfig, setTableConfig] = useState({
     // showUser_doc_id: true,
@@ -38,7 +38,15 @@ function VolunteerPage() {
     showEmail: true,
     showAddress: true
   });
-  
+  const [editMode, setEditMode] = useState(false);
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
 
   useEffect(() => {
     const fetchTableData = async () => {
@@ -79,22 +87,20 @@ function VolunteerPage() {
   console.log(tableData)
 
   const tableRows = tableData
-    ? tableData.map((item) => (
-        <TableContents
-          key={item.uid}
-          rowData={item}
-          tableConfig={tableConfig}
-          onButtonClick={() => {
-            setSelectedRow(item);
-            setShowPopup(true);
-          }}
-        />
-      ))
-    : null;
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
+  ? tableData.map((item) => (
+      <TableContents
+        key={item.uid}
+        rowData={item}
+        tableConfig={tableConfig}
+        onButtonClick={() => {
+          setSelectedRow(item);
+          setShowPopup(true);
+        }}
+        editMode={editMode}
+        toggleEditMode={toggleEditMode}
+      />
+    ))
+  : null;
 
   return (
     <div className="tableContainer">
