@@ -1,0 +1,31 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  /* Styling for sidebar */
+  .sidebar {
+    @apply fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-green-600 text-green-800;
+  }
+
+  /* styling for sidebar icon */
+  .sidebar-icon {
+    @apply relative flex items-center justify-center
+      h-12 w-12 mt-2 mb-2 mx-auto
+      bg-green-800 text-green-300
+      hover:bg-green-600 hover:text-green-100
+      hover:rounded-xl rounded-3xl
+      transition-all duration-300 ease-linear
+      cursor-pointer shadow-lg;
+  }
+
+  /* styling for sidebar icon tooltip */
+  .sidebar-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left;
+  }
+
+  /* styling for sidebar divider */
+  .sidebar-hr {
+    @apply bg-gray-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-full mx-2;
+  }
+}

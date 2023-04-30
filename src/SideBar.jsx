@@ -1,7 +1,7 @@
 import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
 import { FaFire, FaPoo } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import './index.css';
+import './SideBar.css';
 
 const SideBar = () => {
   return (
