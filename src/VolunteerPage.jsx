@@ -131,7 +131,8 @@ function VolunteerPage() {
         <ToggleAllEditModes
           editMode={editMode}
           tableData={tableData}
-          toggleEditAllMode={toggleEditAllMode} // Pass this function as a prop
+          toggleEditAllMode={toggleEditAllMode}
+          editAllMode={editAllMode}
         />
       )}
       <table className="dataTable">

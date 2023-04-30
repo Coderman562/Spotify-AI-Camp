@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./ToggleAllEditModes.css";
 
-function ToggleAllEditModes({ editMode, tableData, toggleEditAllMode }) {
-  const [allRowsInEditMode, setAllRowsInEditMode] = useState(false);
-
-  useEffect(() => {
-    setAllRowsInEditMode(tableData.every((item) => editMode[item.uid]));
-  }, [editMode, tableData]);
-
+function ToggleAllEditModes({ editMode, tableData, toggleEditAllMode, editAllMode }) {
   const onClickHandler = () => {
     toggleEditAllMode();
   };
 
   return (
     <button onClick={onClickHandler}>
-      {allRowsInEditMode ? "Save All" : "Edit All"}
+      {editAllMode ? "Save All" : "Edit All"}
     </button>
   );
 }
