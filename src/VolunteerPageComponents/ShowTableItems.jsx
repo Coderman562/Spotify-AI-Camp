@@ -1,6 +1,6 @@
 // ShowTableItems.jsx
 import React from 'react';
-import './Tables.css';
+import './ShowTableItems.css';
 
 function ConfigCheckbox({ label, isChecked, onChange }) {
   return (

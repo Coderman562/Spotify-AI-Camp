@@ -1,0 +1,35 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  /* Styling for the PopupProfileEditor */
+  .popup-container {
+    @apply fixed inset-0 flex items-center justify-center z-50;
+    @apply bg-black bg-opacity-50;
+  }
+  
+  .popup-content {
+    @apply bg-white p-6 rounded-lg shadow-lg w-96;
+  }
+  
+  .popup-header {
+    @apply mb-4;
+  }
+  
+  .popup-title {
+    @apply text-2xl font-semibold;
+  }
+  
+  .user-info {
+    @apply mb-2;
+  }
+  
+  .user-info strong {
+    @apply mr-2;
+  }
+
+  .close-btn {
+    @apply absolute top-0 right-0 mt-2 mr-2 text-xl font-semibold text-gray-600 hover:text-gray-800;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './index.css';
+import './FormPage.css';
 import FirstNameInput from './FormPageComponents/FirstNameInput';
 import MiddleNameInput from './FormPageComponents/MiddleNameInput';
 import LastNameInput from './FormPageComponents/LastNameInput';

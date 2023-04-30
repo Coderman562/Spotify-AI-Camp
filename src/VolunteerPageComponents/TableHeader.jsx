@@ -1,6 +1,6 @@
 // TableHeader.jsx
 import React from 'react';
-import '../index.css';
+import './TableHeader.css';
 
 function TableHeader({ tableConfig }) {
   return (

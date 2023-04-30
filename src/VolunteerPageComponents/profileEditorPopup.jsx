@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css';
+import './ProfileEditorPopup.css';
 
 function ProfileEditorPopup({ rowData, onClose }) {
   const handleContentClick = (e) => {
@@ -12,7 +12,6 @@ function ProfileEditorPopup({ rowData, onClose }) {
         <div className="popup-header">
           <h3 className="popup-title">User Information</h3>
         </div>
-        {/* <p className="user-info"><strong>User ID:</strong> {rowData.uid}</p> */}
         <p className="user-info">
           <strong>Name:</strong> {rowData.fn || '-'} {rowData.ln || '-'}
         </p>
