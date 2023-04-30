@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./App.css";
 import SideBar from "./SideBar";
+import TopBar from "./TopBar";
 import HomePage from "./HomePage";
 import FormPage from "./FormPage";
 import VolunteerPage from "./VolunteerPage"
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <SideBar />
+        <TopBar />
         <main>
           <Routes>
             <Route index element={<HomePage />} />

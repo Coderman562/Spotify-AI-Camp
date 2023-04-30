@@ -3,12 +3,10 @@
 @import 'tailwindcss/utilities';
 
 .App {
-  display: flex;
-  height: 100vh;
+  @apply flex h-screen;
   width: calc(100% - 4rem); /* Subtract the width of the sidebar */
 }
 
 main {
-  flex: 1;
-  margin-left: 4rem; /* Add left margin equal to the width of the sidebar */
+  @apply flex-1 ml-16 pt-16; /* Add left margin equal to the width of the sidebar and padding-top to accommodate the TopBar */
 }
