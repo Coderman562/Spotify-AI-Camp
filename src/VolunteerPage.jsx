@@ -90,7 +90,7 @@ function VolunteerPage() {
       const fetchLogData = async () => {
         try {
           console.log("starting fetch log");
-          const response = await fetch(`/api/get-log-stats?uid=${selectedRow.uid}`);
+          const response = await fetch(`/api/get-log-entries?uid=${selectedRow.uid}`);
           const data = await response.json();
           setLogData(data);
           console.log("fetched data log");
@@ -104,7 +104,8 @@ function VolunteerPage() {
   }, [showPopup, selectedRow]);
   
 
-  console.log(tableData)
+  // console.log(tableData)
+  console.log(logData)
 
   const tableRows = tableData
   ? tableData.map((item) => (
@@ -125,7 +126,7 @@ function VolunteerPage() {
 
   return (
     <div className="tableContainer">
-      <div className="flex items-center">
+      <div className="flex items-baseline">
         {tableData.length > 0 && (
           <EditAllButton
             toggleEditAllMode={toggleEditAllMode}

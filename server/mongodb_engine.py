@@ -133,9 +133,20 @@ class DB:
                     return False
         return True
 
-    def get_user_log(self, user_oid):
-        result = self.log_col.find_one({"_id": user_oid})
-        return result
+    def get_user_all_log_entries(self, user_oid):
+        result = self.user_col.find_one({"_id": user_oid})
+        if result is None:
+            return None
+        log_oid_list = result["ll"]
+        log_entries = []
+        for log_oid in log_oid_list:
+            log_result = self.log_col.find_one({"_id": log_oid})
+            if log_result is None:
+                continue
+            for log in log_result["l"]:
+                log_entries.append(log)
+
+        return log_entries
 
     def _calculate_log_time_stat(self, logs):
         for log in logs:
