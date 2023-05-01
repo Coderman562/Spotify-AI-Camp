@@ -1,7 +1,7 @@
 import React from "react";
 import "./ToggleAllEditModes.css";
 
-function ToggleAllEditModes({ editMode, tableData, toggleEditAllMode, editAllMode }) {
+function ToggleAllEditModes({toggleEditAllMode, editAllMode }) {
   const onClickHandler = () => {
     toggleEditAllMode();
   };
