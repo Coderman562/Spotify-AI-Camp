@@ -42,6 +42,8 @@ function VolunteerPage() {
   const [editMode, setEditMode] = useState({});
   const [editAllMode, setEditAllMode] = useState(false);
 
+  console.log(editMode);
+
   const closePopup = () => {
     setShowPopup(false);
   };
@@ -57,10 +59,10 @@ function VolunteerPage() {
     const newEditMode = {};
 
     tableData.forEach((row) => {
-      newEditMode[row.user_doc_id] = !editAllMode;
+      newEditMode[row.uid] = !editAllMode;
     });
 
-    console.log('editAllMode:', editAllMode);
+    console.log(newEditMode);
 
     setEditMode(newEditMode);
     setEditAllMode(!editAllMode);
@@ -129,8 +131,6 @@ function VolunteerPage() {
       />
       {tableData.length > 0 && (
         <ToggleAllEditModes
-          editMode={editMode}
-          tableData={tableData}
           toggleEditAllMode={toggleEditAllMode}
           editAllMode={editAllMode}
         />
