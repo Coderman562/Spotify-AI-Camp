@@ -1,7 +1,7 @@
 import React from "react";
-import "./ToggleAllEditModes.css";
+import "./EditAllButton.css";
 
-function ToggleAllEditModes({toggleEditAllMode, editAllMode }) {
+function EditAllButton({toggleEditAllMode, editAllMode }) {
   const onClickHandler = () => {
     toggleEditAllMode();
   };
@@ -16,4 +16,4 @@ function ToggleAllEditModes({toggleEditAllMode, editAllMode }) {
   );
 }
 
-export default ToggleAllEditModes;
+export default EditAllButton;

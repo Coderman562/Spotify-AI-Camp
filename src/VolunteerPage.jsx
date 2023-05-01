@@ -4,7 +4,7 @@ import TableContents from './VolunteerPageComponents/TableContents.jsx';
 import TableHeader from './VolunteerPageComponents/TableHeader.jsx';
 import ProfileEditorPopup from './VolunteerPageComponents/ProfileEditorPopup.jsx';
 import ShowTableItems from './VolunteerPageComponents/ShowTableItems.jsx';
-import ToggleAllEditModes from './VolunteerPageComponents/ToggleAllEditModes.jsx';
+import EditAllButton from './VolunteerPageComponents/EditAllButton.jsx';
 
 const tableDataEx = [
   {
@@ -127,7 +127,7 @@ function VolunteerPage() {
     <div className="tableContainer">
       <div className="flex items-center">
         {tableData.length > 0 && (
-          <ToggleAllEditModes
+          <EditAllButton
             toggleEditAllMode={toggleEditAllMode}
             editAllMode={editAllMode}
           />
