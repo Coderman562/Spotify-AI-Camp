@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.toggleAllEditModesButton {
+  @apply px-6 py-3 text-xs font-medium tracking-wider text-white bg-green-600 hover:bg-green-700 rounded shadow transition duration-300 ease-linear cursor-pointer m-4;
+}

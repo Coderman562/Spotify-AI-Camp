@@ -7,25 +7,6 @@ function ProfileEditorPopup({ rowData, onClose, logData }) {
     e.stopPropagation();
   };
 
-  // // get hour_log from database with set user id
-  // //
-  // useEffect(() => {
-  //   const fetchTableData = async () => {
-  //     try {
-  //       console.log("starting fetch log")
-  //       const response = await fetch(`/api/get-log-stats?uid=${rowData.uid}`);
-  //       const data = await response.json();
-  //       setLogData(data);
-  //       console.log("fetched data log")
-        
-  //     } catch (error) {
-  //       console.error('Error fetching table data:', error);
-  //     }
-  //   };
-
-  //   fetchTableData();
-  // }, []);
-
   const logItems = logData.map((log, index) => (
     <li key={index} className="log-item">
       <p>

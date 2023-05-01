@@ -125,16 +125,18 @@ function VolunteerPage() {
 
   return (
     <div className="tableContainer">
-      <ShowTableItems
-        tableConfig={tableConfig}
-        setTableConfig={setTableConfig}
-      />
-      {tableData.length > 0 && (
-        <ToggleAllEditModes
-          toggleEditAllMode={toggleEditAllMode}
-          editAllMode={editAllMode}
+      <div className="flex items-center">
+        {tableData.length > 0 && (
+          <ToggleAllEditModes
+            toggleEditAllMode={toggleEditAllMode}
+            editAllMode={editAllMode}
+          />
+        )}
+        <ShowTableItems
+          tableConfig={tableConfig}
+          setTableConfig={setTableConfig}
         />
-      )}
+      </div>
       <table className="dataTable">
         <thead className="tableHeader">
           <TableHeader tableConfig={tableConfig} />

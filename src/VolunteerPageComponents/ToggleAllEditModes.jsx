@@ -7,8 +7,11 @@ function ToggleAllEditModes({toggleEditAllMode, editAllMode }) {
   };
 
   return (
-    <button onClick={onClickHandler}>
-      {editAllMode ? "Save All" : "Edit All"}
+    <button
+      onClick={onClickHandler}
+      className={`toggleAllEditModesButton`}
+    >
+      {editAllMode ? "Save All" : "Edit Mode"}
     </button>
   );
 }
