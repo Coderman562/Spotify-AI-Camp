@@ -3,7 +3,7 @@ import navbarLogo from './assets/img/navbar-logo.svg';
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div className="container">
         <a className="navbar-brand" href="#page-top">
           <img src={navbarLogo} alt="..." />
@@ -24,12 +24,12 @@ function Navbar() {
           <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
             <li className="nav-item">
               <a className="nav-link" href="#services">
-                Services
+                Table of Contents
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#portfolio">
-                Portfolio
+                EDA
               </a>
             </li>
             <li className="nav-item">
